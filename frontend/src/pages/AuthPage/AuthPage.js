@@ -15,8 +15,8 @@ const AuthPage = () => {
     <div className={styles.auth_page}>
       <Container
         bg="#575C68"
-        w="30%"
-        h="80vh"
+        w="lg"
+        h="100%"
         borderRadius=".7em .7em 0px .7em"
         borderWidth="1px"
         borderColor={"rgba(117, 117, 117, .4)"}
