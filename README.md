@@ -1,3 +1,8 @@
+## Features
+- Animated Progress Bar Added
+
+
+
 Chat App
 - Keep Asking Qs to Yourself
 - Question each and every line
