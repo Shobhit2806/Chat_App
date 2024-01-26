@@ -1,5 +1,6 @@
 ## Features
 - Animated Progress Bar Added
+- Login & Signup added
 
 
 
