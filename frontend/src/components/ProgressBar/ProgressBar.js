@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProgressBar.module.css";
+import { useNavigate } from "react-router-dom";
+
 const ProgressBar = () => {
   const [value, setValue] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     const intervalId = setInterval(() => {
       setValue((val) => {
         if (val >= 99) {
           clearInterval(intervalId);
+          navigate('/chat')
         }
         return val + 1;
       });
-    }, 20);
+    }, 50);
 
     return () => clearInterval(intervalId);
   }, []);
