@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProgressBar.module.css";
-import { useNavigate } from "react-router-dom";
 
-const ProgressBar = () => {
+const ProgressBar = ({onComplete}) => {
   const [value, setValue] = useState(0);
-  const navigate = useNavigate();
+ 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setValue((val) => {
         if (val >= 99) {
           clearInterval(intervalId);
-          navigate('/chat')
+          onComplete();
         }
         return val + 1;
       });
@@ -20,7 +19,11 @@ const ProgressBar = () => {
   }, []);
   return (
     <div className={styles.progress_bar_box}>
-      <div className={styles.progress} style={{ width: `${value}%` }} />
+      <div
+        className={styles.progress}
+        // style={{ width: `${value}%` }}
+        style={{ transform: `scaleX(${value / 100})`, transformOrigin: "left" }}
+      />
     </div>
   );
 };

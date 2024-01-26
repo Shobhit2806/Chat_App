@@ -15,3 +15,5 @@ Chat App
 - Basic FE and BE setup done
 - Routing added in FE
 - Define Models for user,chat,messages.
+- Progress bar Done.
+- Use transform instead of width in progres bar due to performance reason

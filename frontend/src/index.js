@@ -5,7 +5,7 @@ import App from "./App";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import "./index.css";
-import ChatPage from "./pages/ChatPage";
+import ChatPage from "./pages/ChatPage/ChatPage";
 import HomePage from "./pages/HomePage/HomePage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
