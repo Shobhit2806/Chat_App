@@ -12,6 +12,8 @@ Chat App
 - Understand about module in js
 - proxy used in package.json file in fe code and about host 127.0.0.1 hostname etc. Basic qs.
 - express async handler library added
+- use bcryptjss for password encryption
+- use jwt for authentication
 
 ## Progress
 - Basic FE and BE setup done
@@ -20,3 +22,4 @@ Chat App
 - Progress bar Done.
 - Use transform instead of width in progres bar due to performance reason
 - MongoDB Setup
+- Auth Signup & Login Added BE
