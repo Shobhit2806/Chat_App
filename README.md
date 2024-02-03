@@ -26,3 +26,4 @@ Chat App
 - Auth done from FE 
 - Search user api added
 - Auth middleware added
+- Chat Apis added
