@@ -11,6 +11,7 @@ Chat App
 - export const chat doesn;t work, why?
 - Understand about module in js
 - proxy used in package.json file in fe code and about host 127.0.0.1 hostname etc. Basic qs.
+- express async handler library added
 
 ## Progress
 - Basic FE and BE setup done
