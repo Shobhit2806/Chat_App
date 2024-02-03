@@ -24,3 +24,5 @@ Chat App
 - MongoDB Setup
 - Auth Signup & Login Added BE
 - Auth done from FE 
+- Search user api added
+- Auth middleware added
