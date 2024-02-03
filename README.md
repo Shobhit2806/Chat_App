@@ -23,3 +23,4 @@ Chat App
 - Use transform instead of width in progres bar due to performance reason
 - MongoDB Setup
 - Auth Signup & Login Added BE
+- Auth done from FE 

@@ -3,6 +3,8 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
+import { useToast } from "@chakra-ui/toast";
+import axios from "axios";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -10,8 +12,60 @@ const Login = () => {
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
+
+  const toast = useToast();
+
   const handleClick = () => setShow(!show);
-  const submitHandler = () => {};
+  const submitHandler = async () => {
+    setLoading(true);
+    if (!email || !password) {
+      toast({
+        title: "Please Fill all the Feilds",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const { data } = await axios.post(
+        "/api/user/login",
+        { email, password },
+        config
+      );
+
+      toast({
+        title: "Login Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      // setUser(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+ 
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+    }
+  };
 
   return (
     <VStack spacing="10px" padding={".6em 0px"}>
