@@ -28,3 +28,4 @@ Chat App
 - Auth middleware added
 - Chat Apis added
 - Context setup added
+- Header Comp added
