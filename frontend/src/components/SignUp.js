@@ -5,6 +5,7 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from 'axios';
+import {  useNavigate } from "react-router-dom";
 
 const SignUp = () => {
 
@@ -20,6 +21,8 @@ const SignUp = () => {
 
   const toast = useToast();
  
+  const navigate = useNavigate();
+
   const postDetails = (pics) => {
     setPicLoading(true);
     if (pics === undefined) {
@@ -115,7 +118,7 @@ const SignUp = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setPicLoading(false);
-      
+      navigate("/chat")
     } catch (error) {
       toast({
         title: "Error Occured!",

@@ -8,6 +8,7 @@ import "./index.css";
 import ChatPage from "./pages/ChatPage/ChatPage";
 import HomePage from "./pages/HomePage/HomePage";
 import AuthPage from "./pages/AuthPage/AuthPage";
+import { ChatProvider } from "./context/ChatProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -30,9 +31,9 @@ const router = createBrowserRouter([
   },
 ]);
 root.render(
-  <React.StrictMode>
+  <ChatProvider>
     <ChakraProvider>
       <RouterProvider router={router} />
     </ChakraProvider>
-  </React.StrictMode>
+  </ChatProvider>
 );
