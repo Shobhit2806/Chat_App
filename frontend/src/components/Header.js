@@ -25,7 +25,7 @@ const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleLogout =()=>{
     localStorage.removeItem("userInfo")
-    // navigate("/auth")
+    navigate("/auth")
   }
 
   return (
