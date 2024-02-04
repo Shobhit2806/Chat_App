@@ -12,15 +12,17 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/hooks";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { ChatContext } from "../context/ChatProvider";
 import ProfileModal from "./ProfileModal";
 import {  useNavigate } from "react-router-dom";
+import SideDrawer from "./SideDrawer";
 
 const Header = () => {
   const { user } = useContext(ChatContext);
   const navigate = useNavigate()
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const handleLogout =()=>{
     localStorage.removeItem("userInfo")
     navigate("/auth")
@@ -40,7 +42,7 @@ const Header = () => {
         alignItems="center"
       >
         <Tooltip label="Search users to chat">
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={onOpen}>
             <i class="fas fa-search"></i>
             <Text px={2} display={{ base: "none", md: "flex" }}>
               Search user to chat
@@ -96,6 +98,7 @@ const Header = () => {
           </Menu>
         </div>
       </Box>
+      <SideDrawer onClose={onClose} isOpen={isOpen}/>
     </div>
   );
 };
