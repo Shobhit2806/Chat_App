@@ -3,8 +3,9 @@ import { Container } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import styles from "./Auth.module.css";
 import TabComponent from "./TabComponent";
-import Login from "../../components/Login";
-import SignUp from "../../components/SignUp";
+import Login from "../../components/Auth/Login";
+import SignUp from "../../components/Auth/SignUp";
+
 const AuthPage = () => {
   const gradientBackground = {
     backgroundImage:

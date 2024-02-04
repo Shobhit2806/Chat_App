@@ -14,10 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { ChatContext } from "../context/ChatProvider";
+import { ChatContext } from "../../context/ChatProvider";
 import ProfileModal from "./ProfileModal";
 import {  useNavigate } from "react-router-dom";
-import SideDrawer from "./SideDrawer";
+import SideDrawer from "./SideDrawer/SideDrawer";
 
 const Header = () => {
   const { user } = useContext(ChatContext);
