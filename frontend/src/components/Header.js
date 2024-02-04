@@ -6,19 +6,32 @@ import {
   IconButton,
   Menu,
   MenuButton,
+  MenuDivider,
+  MenuItem,
   MenuList,
   Text,
   Tooltip,
 } from "@chakra-ui/react";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { ChatContext } from "../context/ChatProvider";
+import ProfileModal from "./ProfileModal";
+import {  useNavigate } from "react-router-dom";
+
 const Header = () => {
-  const {user } = useContext(ChatContext);
+  const { user } = useContext(ChatContext);
+  const navigate = useNavigate()
+
+  const handleLogout =()=>{
+    localStorage.removeItem("userInfo")
+    navigate("/auth")
+  }
+
   return (
     <div>
       <Box
         bg="white"
         borderWidth="5px"
+        borderColor={"#6b81fa"}
         w="100%"
         h="9vh"
         p="5px 10px"
@@ -67,12 +80,19 @@ const Header = () => {
                   <Avatar
                     size="sm"
                     cursor="pointer"
-                    name={user.name}
-                    src={user.pic}
+                    name={user?.name}
+                    src={user?.pic}
                   />
                 }
               />
             </MenuButton>
+            <MenuList>
+              <ProfileModal user={user}>
+                <MenuItem fontSize={"xl"}>My Profile</MenuItem>{" "}
+              </ProfileModal>
+              <MenuDivider />
+              <MenuItem fontSize={"xl"} onClick={()=>handleLogout()}>Logout</MenuItem>
+            </MenuList>
           </Menu>
         </div>
       </Box>
