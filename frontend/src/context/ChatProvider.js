@@ -14,5 +14,5 @@ export const ChatProvider = ({children})=>{
     //         navigate("/")
     //     }
     // },[navigate])
-    return <ChatContext.Provider value={{value}}>{children}</ChatContext.Provider>
+    return <ChatContext.Provider>{children}</ChatContext.Provider>
 }
