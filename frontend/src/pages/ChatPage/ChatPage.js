@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header'
 import MyChats from '../../components/Chat/MyChat'
 import { ChatContext } from '../../context/ChatProvider'
 import { Box } from '@chakra-ui/react'
+import ChatBox from '../../components/Chat/ChatBox'
 
 const ChatPage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
@@ -15,9 +16,10 @@ const ChatPage = () => {
       {user && <Header />}
       <Box display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
         {user && <MyChats fetchAgain={fetchAgain} />}
-        {/* {user && (
-          <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
-        )} */}
+        {user && (
+          <ChatBox  />
+        )}
+        
       </Box>
     </div>
       </div>

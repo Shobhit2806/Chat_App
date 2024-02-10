@@ -1,6 +1,6 @@
 .fadein {
   opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 1s ease-out forwards;background-image: radial-gradient(circle, #e7e7e7, #d0ccec, #b5b2f1, #9599f6, #6b81fa);background-image: linear-gradient(to left bottom, #919597, #7297b0, #5794cd, #4f8ee7, #6b81fa);
 }
 
 @keyframes fadeIn {
