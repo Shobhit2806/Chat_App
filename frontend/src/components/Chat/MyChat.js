@@ -52,7 +52,7 @@ const MyChats = ({ fetchAgain }) => {
       alignItems="center"
       p={3}
       bg="white"
-      w={{ base: "100%", md: "31%" }}
+      w={{ base: "100%", md: "25%" }}
       borderRadius="lg"
       borderWidth="1px"
     >
@@ -66,21 +66,14 @@ const MyChats = ({ fetchAgain }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        My Chats
+        Chats
         
-        <GroupChatModal>
-          <Button
-            d="flex"
-            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-            rightIcon={<AddIcon />}
-          >
-            New Group Chat
-          </Button>
-        </GroupChatModal>
+       
       </Box>
       <Box
         display="flex"
         flexDirection="column"
+        justifyContent={"space-between"}
         p={3}
         bg="#F8F8F8"
         w="100%"
@@ -94,8 +87,10 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
-                color={selectedChat === chat ? "white" : "black"}
+                bg={selectedChat === chat ? "#E9D8FD" : "#E8E8E8"}
+                color={selectedChat === chat ? "#553C9A" : "black"}
+                border={selectedChat===chat?"2px":""}
+                borderColor={selectedChat===chat?"#553C9A":""}
                 px={3}
                 py={2}
                 borderRadius="lg"
@@ -120,6 +115,18 @@ const MyChats = ({ fetchAgain }) => {
         ) : (
           <ChatLoading />
         )}
+         <GroupChatModal>
+          <Button
+            d="flex"
+            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+            rightIcon={<AddIcon />}
+            width={"100%"}
+            backgroundColor={"#5a2ade"}
+            color={"white"}
+          >
+            Group Chat
+          </Button>
+        </GroupChatModal>
       </Box>
     </Box>
   );

@@ -133,7 +133,7 @@ export const GroupChatModal = ({ children }) => {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+     <span onClick={onOpen}>{children}</span>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -180,7 +180,7 @@ export const GroupChatModal = ({ children }) => {
           <ModalFooter>
             
             <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
-              Create Chat
+              Create Group
             </Button>
           </ModalFooter>
         </ModalContent>
