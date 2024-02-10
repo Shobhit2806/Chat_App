@@ -29,3 +29,5 @@ Chat App
 - Chat Apis added
 - Context setup added
 - Header Comp added
+- UI added for chat
+- Send Msg api added
