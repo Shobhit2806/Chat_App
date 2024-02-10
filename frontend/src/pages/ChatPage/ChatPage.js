@@ -9,6 +9,7 @@ import ChatBox from '../../components/Chat/ChatBox'
 const ChatPage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
   const {user} = useContext(ChatContext)
+  
   return (
     <div className={styles.fadein}>
       <div>
@@ -17,7 +18,7 @@ const ChatPage = () => {
       <Box display="flex" justifyContent="space-between" w="75%" h="91.5vh" p="10px" margin={"auto"}>
         {user && <MyChats fetchAgain={fetchAgain} />}
         {user && (
-          <ChatBox  />
+          <ChatBox  fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>
         )}
         
       </Box>
