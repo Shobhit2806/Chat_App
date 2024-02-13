@@ -4,22 +4,32 @@ const connectDB = require("./config/db");
 const colors = require("colors");
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
-const messageRoutes = require("./routes/messageRoutes")
+const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-dotenv.config()
+dotenv.config();
 
-connectDB()
-const app =express();
+connectDB();
+const app = express();
 
-app.use(express.json())
-app.use('/api/user',userRoutes)
-app.use('/api/chat',chatRoutes)
-app.use('/api/message',messageRoutes)
+app.use(express.json());
+app.use("/api/user", userRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/message", messageRoutes);
 
-app.use(notFound)
-app.use(errorHandler)
-
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, console.log(`WEB SERVER STARTED on ${PORT}`))
+const server = app.listen(PORT, console.log(`WEB SERVER STARTED on ${PORT}`));
+
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("connected to socket.io");
+});

@@ -9,6 +9,11 @@ import ProfileModal from "../Header/ProfileModal"
 import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
+import io from "socket.io-client"
+
+const ENDPOINT = "http://localhost:5000"
+var socket , selectedChatCompare;
+
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [newMessage,setNewMessage] = useState("")
@@ -56,6 +61,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   useEffect(()=>{
     fetchMessages()
   },[selectedChat])
+
+  useEffect(()=>{
+    socket = io(ENDPOINT)
+  },[])
 
   const sendMessage = async  (event)=>{ 
     if (event.key === "Enter" && newMessage) {
