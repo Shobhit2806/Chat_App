@@ -31,3 +31,5 @@ Chat App
 - Header Comp added
 - UI added for chat
 - Send Msg api added
+- Websocket connection established
+- Notification feature added

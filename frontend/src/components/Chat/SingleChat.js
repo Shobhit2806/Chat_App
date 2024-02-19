@@ -20,7 +20,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [loading, setLoading] = useState(false);
   const [socketConnected, setsocketConnected] = useState(false);
 
-  const { selectedChat, setSelectedChat, user, chats, setChats } =
+  const { selectedChat, setSelectedChat, user, chats, setChats,notification, setNotification } =
     useContext(ChatContext);
   const [typing, setTyping] = useState(false);
   const [istyping, setIsTyping] = useState(false);
@@ -43,6 +43,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }, timerLength);
   };
+
   const fetchMessages = async () => {
     if (!selectedChat) return;
 
@@ -96,12 +97,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         selectedChatCompare._id !== newMessageRcvd.chat._id
       ) {
         // give notification
+        if(!notification.includes(newMessageRcvd)){ 
+          setNotification([newMessageRcvd,...notification ])
+          setFetchAgain(!fetchAgain)
+        }
       } else {
         setMessages([...messages, newMessageRcvd]);
       }
     });
   });
-
+  console.log(notification,"----");
   const sendMessage = async (event) => {
     
     if (event.key === "Enter" && newMessage) {

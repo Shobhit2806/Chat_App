@@ -18,9 +18,10 @@ import { ChatContext } from "../../context/ChatProvider";
 import ProfileModal from "./ProfileModal";
 import {  useNavigate } from "react-router-dom";
 import SideDrawer from "./SideDrawer/SideDrawer";
+import { getSender } from "../../config/ChatLogics";
 
 const Header = () => {
-  const { user } = useContext(ChatContext);
+  const { user ,notification, setNotification} = useContext(ChatContext);
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleLogout =()=>{
@@ -61,7 +62,14 @@ const Header = () => {
                 aria-label="Search database"
                 icon={<BellIcon />}
               />
-              {/* <MenuList></MenuList> */}
+              <MenuList> 
+                {!notification.length && "No New Messages"}
+                {notification.map((notif)=>(
+                  <MenuItem key={notif._id}>
+                    {notif.chat.isGroupChat?`New Messages in ${notif.chat.chatName}`:`New Message from ${getSender(user,notif.chat.users)}`}
+                  </MenuItem>
+                ))}
+              </MenuList>
             </MenuButton>
           </Menu>
           <Menu>
