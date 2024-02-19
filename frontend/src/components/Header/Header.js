@@ -16,19 +16,27 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { ChatContext } from "../../context/ChatProvider";
 import ProfileModal from "./ProfileModal";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SideDrawer from "./SideDrawer/SideDrawer";
 import { getSender } from "../../config/ChatLogics";
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
 
 const Header = () => {
-  const { user ,notification, setNotification} = useContext(ChatContext);
-  const navigate = useNavigate()
+  const { user, notification, setNotification, selectedChat, setSelectedChat } =
+    useContext(ChatContext);
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleLogout =()=>{
-    localStorage.removeItem("userInfo")
-    navigate("/auth")
-  }
-
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    navigate("/auth");
+  };
+  const handleNotification = (e, notif) => {
+    e.stopPropagation();
+    console.log("kdnlksdn");
+    setSelectedChat(notif.chat);
+    setNotification(notification.filter((n) => n !== notif));
+  };
   return (
     <div>
       <Box
@@ -54,6 +62,12 @@ const Header = () => {
         <div style={{ display: "flex", alignItems: "center" }}>
           <Menu>
             <MenuButton p={1}>
+              <NotificationBadge
+                count={notification.length}
+                effect={Effect.SCALE}
+                style={{zIndex:"1"}}
+              />
+
               <IconButton
                 display="flex"
                 alignItems="center"
@@ -62,15 +76,20 @@ const Header = () => {
                 aria-label="Search database"
                 icon={<BellIcon />}
               />
-              <MenuList> 
-                {!notification.length && "No New Messages"}
-                {notification.map((notif)=>(
-                  <MenuItem key={notif._id}>
-                    {notif.chat.isGroupChat?`New Messages in ${notif.chat.chatName}`:`New Message from ${getSender(user,notif.chat.users)}`}
-                  </MenuItem>
-                ))}
-              </MenuList>
             </MenuButton>
+            <MenuList pl={2}>
+              {!notification.length && "No New Messages"}
+              {notification.map((notif) => (
+                <MenuItem
+                  key={notif._id}
+                  onClick={(e) => handleNotification(e, notif)}
+                >
+                  {notif.chat.isGroupChat
+                    ? `New Messages in ${notif.chat.chatName}`
+                    : `New Message from ${getSender(user, notif.chat.users)}`}
+                </MenuItem>
+              ))}
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton
@@ -101,12 +120,14 @@ const Header = () => {
                 <MenuItem fontSize={"xl"}>My Profile</MenuItem>{" "}
               </ProfileModal>
               <MenuDivider />
-              <MenuItem fontSize={"xl"} onClick={()=>handleLogout()}>Logout</MenuItem>
+              <MenuItem fontSize={"xl"} onClick={() => handleLogout()}>
+                Logout
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>
       </Box>
-      <SideDrawer onClose={onClose} isOpen={isOpen}/>
+      <SideDrawer onClose={onClose} isOpen={isOpen} />
     </div>
   );
 };
