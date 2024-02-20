@@ -12,6 +12,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 
 const ENDPOINT = "http://localhost:5000";
+const ENDPOINT_PROD = "https://conversify-qtgb.onrender.com"
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -81,7 +82,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   }, [selectedChat]);
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT_PROD);
     socket.emit("setup", user);
     socket.on("connected", () => {
       setsocketConnected(true);
